@@ -1,0 +1,17 @@
+.card {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 350px; 
+    transform-origin: left; 
+    transform: perspective(1000px) rotateY(30deg); 
+    transition: transform 0.3s ease; 
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: perspective(1000px) rotateY(0); 
+  }
+  
