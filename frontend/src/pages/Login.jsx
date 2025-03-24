@@ -1,43 +1,68 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        navigate("/ChatApp"); 
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
   return (
-   <>
-   <div class="min-h-screen flex items-center justify-center w-full bg-blue-100">
-  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold text-blue-800 mb-6 ">Login to Your Account</h1>
-    <form>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email" required
-          class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-md w-96">
+        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+        <form onSubmit={handleLogin} className="flex flex-col">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-2 border rounded-md mb-3"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-2 border rounded-md mb-3"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+          >
+            Login
+          </button>
+        </form>
+        <p className="text-center mt-4">
+          Don't have an account?{" "}
+          <Link to="/Signup" className="text-blue-600 hover:underline">
+            Sign up here
+          </Link>
+        </p>
       </div>
-      <div class="mb-6">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password" required
-          class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <button
-        type="submit"
-        class="w-full bg-blue-800 text-white py-3 rounded-lg hover:bg-blue-900 transition">Login</button>
-    </form>
-    <p class="mt-6 text-sm text-gray-600 text-center">
-      Don't have an account? <a href="#" class="text-blue-800 font-bold hover:underline"><Link to = '/Signup'>Sign Up</Link></a>
-    </p>
-  </div>
-</div>
+    </div>
+  );
+};
 
-   </>
-  )
-}
-
-export default Login
+export default Login;
