@@ -41,6 +41,9 @@ const Header = () => {
             <li className="py-2 md:py-0 hover:text-gray-400 cursor-pointer"><Link to = '/FAQ'>FAQ</Link></li>
             <li className="py-2 md:py-0 hover:text-gray-400 cursor-pointer"><Link to = '/Contact'>Contact</Link></li>
             <li className="py-2 md:py-0 hover:text-gray-400 cursor-pointer"><Link to = '/Login'>Login</Link></li>
+            <li className="py-2 md:py-0 hover:text-gray-400 cursor-pointer"><Link to = '/TeacherDashboard'>TeacherDashboard</Link></li>
+            <li className="py-2 md:py-0 hover:text-gray-400 cursor-pointer"><Link to = '/ParentDashboard'>ParentDashboard</Link></li>
+            
           </ul>
         </nav>
 

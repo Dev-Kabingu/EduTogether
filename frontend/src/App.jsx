@@ -10,7 +10,13 @@ import Contact from './pages/Contact'
 import Services from './Pages/Services'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-
+import TeacherDashboard from "./pages/TeacherDashboard";
+import ParentDashboard from "./pages/ParentDashboard";
+import ManageStudents from "./pages/admin/ManageStudents";
+import AdminDashboard from './pages/admin/AdminDashboard'
+import ManageTeachers from './pages/admin/ManageTeachers'
+import ManageUsers from './pages/admin/ManageUsers'
+import ManageParents from './pages/admin/ManageParents'
 
 
 function App() {
@@ -28,6 +34,13 @@ function App() {
      <Route path = '/Contact' element = { <Contact/>}/>
      <Route path = '/Login' element = { <Login/>}/>
      <Route path = '/Signup' element = { <Signup/>}/>
+     <Route path="/TeacherDashboard" element={<TeacherDashboard />} />
+     <Route path="/ParentDashboard" element={<ParentDashboard />} />
+     <Route path="/ManageStudents" element={<ManageStudents />} />
+     <Route path="/AdminDashboard" element={<AdminDashboard />} />
+     <Route path="/ManageUsers" element={<ManageUsers />} />
+     <Route path="/ManageTeachers" element={<ManageTeachers />} />
+     <Route path="/ManageParents" element={<ManageParents />} />
      </Routes>
      {/* <Footer/> */}
      </BrowserRouter>
