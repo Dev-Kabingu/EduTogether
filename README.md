@@ -7,11 +7,11 @@ EduTogether is a MERN stack web application designed to improve communication be
 
 ## 🚀 Features
 - 👨‍🏫 Teacher and Parent Authentication (Signup/Login)
-- 📝 Announcements and Updates from Teachers
+- 📝 Announcements and Updates from Teachers (mails)
 - 💬 Direct Messaging between Parents and Teachers
 - 📅 Event and Meeting Scheduling
 - 📊 Student Progress Tracking
-- 📢 Notifications and Alerts
+- 📢 Notifications and Alerts (mails)
 
 ## 🛠 Tech Stack
 **Frontend:** React.js, Vite, Tailwind CSS  
