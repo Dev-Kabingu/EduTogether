@@ -17,10 +17,20 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 import ManageTeachers from './pages/admin/ManageTeachers'
 import ManageUsers from './pages/admin/ManageUsers'
 import ManageParents from './pages/admin/ManageParents'
+import RequestMeeting from './pages/meetings/RequestMeeting'
+import Meeting from './pages/admin/Meeting'
+import Error from './pages/Error'
+import Notification from './pages/admin/Notification'
+import ScheduledMeetings from './pages/ScheduledMeetings'; 
+import AdminLogin from './pages/admin/AdminLogin'
+import AdminRegister from './pages/admin/AdminRegister'
+import AssignmentPage from './pages/AssignmentPage'
+import TeacherUpload from './components/TeacherUpload'
+import AssignmentList from './components/AssignmentList'
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -41,8 +51,17 @@ function App() {
      <Route path="/ManageUsers" element={<ManageUsers />} />
      <Route path="/ManageTeachers" element={<ManageTeachers />} />
      <Route path="/ManageParents" element={<ManageParents />} />
+     <Route path="/AssignmentPage" element={<AssignmentPage/>} />
+     {/* <Route path="/AssignmentList" element={<AssignmentList/>} /> */}
+     <Route path="/TeacherUpload" element={<TeacherUpload/>} />
+     <Route path="/RequestMeeting" element={<RequestMeeting />} />
+     <Route path="/Meeting" element={<Meeting />} />
+     <Route path="/Error" element={<Error />} />
+     <Route path="/Notification" element={<Notification/>} />
+     <Route path="/ScheduledMeetings" element={<ScheduledMeetings />} /> 
+     <Route path="/AdminLogin" element={<AdminLogin/>} />
+     <Route path="/AdminRegister" element={<AdminRegister/>} />
      </Routes>
-     {/* <Footer/> */}
      </BrowserRouter>
     </>
   )

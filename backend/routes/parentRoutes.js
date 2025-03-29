@@ -1,35 +1,3 @@
-// const express = require("express");
-// const Parent = require("../models/Parent.js");
-
-// const router = express.Router();
-
-// // Get all parents
-// router.get("/", async (req, res) => {
-//   const parents = await Parent.find();
-//   res.json(parents);
-// });
-
-// // Add a new parent
-// router.post("/", async (req, res) => {
-//   const { name, email, childName } = req.body;
-//   const newParent = new Parent({ name, email, childName });
-//   const savedParent = await newParent.save();
-//   res.json(savedParent);
-// });
-
-// // Update a parent
-// router.put("/:id", async (req, res) => {
-//   const updatedParent = await Parent.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//   res.json(updatedParent);
-// });
-
-// // Delete a parent
-// router.delete("/:id", async (req, res) => {
-//   await Parent.findByIdAndDelete(req.params.id);
-//   res.json({ message: "Parent deleted" });
-// });
-
-// module.exports = router; 
 const express = require("express");
 const Parent = require("../models/Parent");
 const router = express.Router();
@@ -47,8 +15,8 @@ router.get("/", async (req, res) => {
 // Add a new parent
 router.post("/", async (req, res) => {
   try {
-    const { name, email, childName } = req.body;
-    const newParent = new Parent({ name, email, childName });
+    const { name, email, mobile, childName, childGrade } = req.body; // ✅ Accept all fields
+    const newParent = new Parent({ name, email, mobile, childName, childGrade });
     await newParent.save();
     res.status(201).json(newParent);
   } catch (error) {

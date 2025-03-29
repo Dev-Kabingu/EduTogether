@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function ManageStudents() {
   const [students, setStudents] = useState([]);
-  const [newStudent, setNewStudent] = useState({ name: "", email: "", grade: "" });
+  const [newStudent, setNewStudent] = useState({ name: "", grade: "" });
   const [editStudent, setEditStudent] = useState(null);
 
   // Fetch students from backend
@@ -18,7 +18,7 @@ export default function ManageStudents() {
     axios.post("http://localhost:5000/api/students", newStudent)
       .then(response => {
         setStudents([...students, response.data]);
-        setNewStudent({ name: "", email: "", grade: "" });
+        setNewStudent({ name: "", grade: "" });
       })
       .catch(error => console.error("Error adding student:", error));
   };
@@ -55,13 +55,6 @@ export default function ManageStudents() {
           className="border p-2 m-2"
         />
         <input
-          type="email"
-          placeholder="Email"
-          value={newStudent.email}
-          onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })}
-          className="border p-2 m-2"
-        />
-        <input
           type="text"
           placeholder="Grade"
           value={newStudent.grade}
@@ -86,12 +79,6 @@ export default function ManageStudents() {
                     className="border p-2"
                   />
                   <input
-                    type="email"
-                    value={editStudent.email}
-                    onChange={(e) => setEditStudent({ ...editStudent, email: e.target.value })}
-                    className="border p-2"
-                  />
-                  <input
                     type="text"
                     value={editStudent.grade}
                     onChange={(e) => setEditStudent({ ...editStudent, grade: e.target.value })}
@@ -101,7 +88,7 @@ export default function ManageStudents() {
                 </>
               ) : (
                 <>
-                  <span>{student.name} ({student.email}) - Grade: {student.grade}</span>
+                  <span>{student.name} - Grade: {student.grade}</span>
                   <div>
                     <button onClick={() => setEditStudent(student)} className="bg-blue-500 text-white px-2 py-1 rounded mx-1">Edit</button>
                     <button onClick={() => deleteStudent(student._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>

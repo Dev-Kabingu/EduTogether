@@ -1,5 +1,7 @@
 # EduTogether
 
+<!-- recovery code D97ARBP1HGU9NZV9ZXMXVY94 -->
+
 ## 📌 Project Overview
 EduTogether is a MERN stack web application designed to improve communication between parents and teachers. The platform enables seamless interactions, updates on student progress, and a collaborative environment for better education outcomes. This project aims to bridge the communication gap in the current education system (CBC).
 

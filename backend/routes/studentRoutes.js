@@ -1,27 +1,26 @@
 const express = require("express");
-const Student = require("../models/Student"); // Ensure the correct path
-
+const Student = require("../models/Student");
 const router = express.Router();
 
 // Get all students
 router.get("/", async (req, res) => {
   try {
-    const students = await Student.find();
+    const students = await Student.find().populate("parentId", "name email");
     res.json(students);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching students" });
+    res.status(500).json({ message: "Error fetching students", error });
   }
 });
 
 // Add a new student
 router.post("/", async (req, res) => {
   try {
-    const { name, email, grade } = req.body;
-    const newStudent = new Student({ name, email, grade });
-    const savedStudent = await newStudent.save();
-    res.json(savedStudent);
+    const { name, email, grade, parentId } = req.body;
+    const newStudent = new Student({ name, email, grade, parentId });
+    await newStudent.save();
+    res.status(201).json(newStudent);
   } catch (error) {
-    res.status(500).json({ error: "Error adding student" });
+    res.status(400).json({ message: "Error adding student", error });
   }
 });
 
@@ -31,7 +30,7 @@ router.put("/:id", async (req, res) => {
     const updatedStudent = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updatedStudent);
   } catch (error) {
-    res.status(500).json({ error: "Error updating student" });
+    res.status(500).json({ message: "Error updating student", error });
   }
 });
 
@@ -39,9 +38,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     await Student.findByIdAndDelete(req.params.id);
-    res.json({ message: "Student deleted" });
+    res.json({ message: "Student deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Error deleting student" });
+    res.status(500).json({ message: "Error deleting student", error });
   }
 });
 

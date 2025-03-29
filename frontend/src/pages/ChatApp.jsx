@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
 
 
 const socket = io("http://localhost:5000", { transports: ["websocket"] });
@@ -12,7 +13,6 @@ const ChatApp = () => {
     const [message, setMessage] = useState("");
     const [user, setUser] = useState(null);
 
-// Fetch user details from the token
 useEffect(() => {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -21,17 +21,15 @@ useEffect(() => {
   }
 
   try {
-      const decoded = jwtDecode(token); // Decode token to get user details
-      setUser(decoded); // Store user details (id, email, role)
-      console.log("Decoded User:", decoded); // Check what's inside the token
+      const decoded = jwtDecode(token); 
+      setUser(decoded); 
+      console.log("Decoded User:", decoded); 
   } catch (error) {
       console.error("Invalid token", error);
       navigate("/login");
   }
 }, [navigate]);
 
-
-    // 🔹 Fetch previous messages from the backend
     useEffect(() => {
         const fetchMessages = async () => {
             try {
@@ -46,7 +44,6 @@ useEffect(() => {
 
         fetchMessages();
 
-        //  Listen for new messages from socket.io
         socket.on("connect", () => console.log(" Socket.io Connected!"));
         socket.on("receiveMessage", (msg) => {
             console.log(" New Message Received:", msg);
@@ -58,31 +55,27 @@ useEffect(() => {
         };
     }, []);
 
-    // 🔹 Send Message Function
+ 
     const sendMessage = (e) => {
         e.preventDefault();
         if (message.trim() && user) {
             const newMessage = { username: `${user.email} (${user.role})`, text: message };
 
-            // Emit message to backend
             socket.emit("sendMessage", newMessage);
-
-            // Clear input field
             setMessage("");
         }
     };
 
     return (
-        <div className="flex flex-col items-center w-full max-w-2xl mx-auto p-6 bg-gray-50 rounded-lg shadow-lg">
+        <>
+        <div className="flex flex-col items-center w-full max-w-2xl mx-auto p-6 mt-12 bg-blue-50 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
                 EduTogether Group Chat
             </h1>
-
-            {/* Chat Display */}
-            <div className="flex flex-col w-full h-80 bg-white border rounded-md p-4 overflow-y-auto">
+            <div className="flex flex-col w-full h-100 bg-white border rounded-md p-4 overflow-y-auto">
                 {user && messages.length > 0 ? (
                     messages.map((msg, index) => (
-                        <div key={index} className={`py-1 px-3 mb-2 rounded-md ${
+                        <div key={index} className={`py-3 px-3 mb-3 rounded-md ${
                             msg.username === `${user.email} (${user.role})`
                                 ? "self-end bg-blue-100"
                                 : "self-start bg-gray-100"
@@ -116,6 +109,8 @@ useEffect(() => {
                 </button>
             </form>
         </div>
+        
+        </>
     );
 };
 

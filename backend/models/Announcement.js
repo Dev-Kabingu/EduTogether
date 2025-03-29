@@ -1,35 +1,23 @@
+// const mongoose = require("mongoose");
 
+// const announcementSchema = new mongoose.Schema({
+//   title: { type: String, required: true },
+//   message: { type: String, required: true },
+//   target: { type: String, enum: ["class", "grade", "school"], required: true },
+//   targetId: { type: mongoose.Schema.Types.ObjectId, refPath: "targetRef" }, // Class or Grade reference
+//   targetRef: { type: String, enum: ["Class", "Grade"] }, // Dynamic reference
+//   teacherId: { type: mongoose.Schema.Types.ObjectId, ref: "Teacher", required: true },
+//   createdAt: { type: Date, default: Date.now },
+// });
 
-const authMiddleware = require("../middleware/auth");
-const express = require("express");
-const Announcement = require("../models/Announcement");
-const router = express.Router();
+// module.exports = mongoose.model("Announcement", announcementSchema);
+const mongoose = require("mongoose");
 
-router.post("/create", authMiddleware, async (req, res) => {
-  console.log("Received announcement creation request:", req.body); 
-  console.log("User role:", req.user.role);
-
-  try {
-    if (req.user.role !== "teacher") {
-      console.log("Access Denied - Not a Teacher");
-      return res.status(403).json({ message: "Access denied" });
-    }
-
-    const newAnnouncement = new Announcement({
-      title: req.body.title,
-      description: req.body.description,
-      teacherId: req.user.id,
-      classLevel: req.body.classLevel,
-    });
-
-    await newAnnouncement.save();
-    console.log("Announcement saved:", newAnnouncement); 
-    res.status(201).json({ message: "Announcement posted successfully", announcement: newAnnouncement });
-  } catch (error) {
-    console.error("Error posting announcement:", error);
-    res.status(500).json({ error: error.message });
-  }
+const announcementSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    message: { type: String, required: true },
+    target: { type: String, required: true },  // Ensure "target" is the correct field
+    createdAt: { type: Date, default: Date.now }
 });
 
-
-module.exports = router;
+module.exports = mongoose.model("Announcement", announcementSchema);

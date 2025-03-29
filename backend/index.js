@@ -1,27 +1,54 @@
+require("events").EventEmitter.defaultMaxListeners = 20;
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const http = require("http");
-const socketIo = require("socket.io");
-const Message = require("./models/Message");
+const Message = require("./models/Message");  
+const path = require("path");
+
+
+//Import WebSocket setup properly
+const { initializeSocket } = require("./socket");
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, { cors: { origin: "http://localhost:5173" } }); // Set correct frontend origin
+
+// Initialize socket.io
+initializeSocket(server); 
 
 app.use(cors());
 app.use(express.json());
 
+// ✅ Serve uploads folder as static files
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 const authRoutes = require("./routes/authRoutes");
+const teacherRoutes = require("./routes/teacherRoutes");
+const studentRoutes = require("./routes/studentRoutes");
+const parentRoutes = require("./routes/parentRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
+const meetingRoutes = require("./routes/meetingRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const adminAuthRoutes = require('./routes/adminAuthRoutes');
+const assignmentRoutes = require('./routes/assignmentRoutes');
+
 app.use("/api/auth", authRoutes);
+app.use("/api/teachers", teacherRoutes);
+app.use("/api/students", studentRoutes);
+app.use("/api/parents", parentRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/meetings", meetingRoutes);
+app.use("/api/admin", adminRoutes); 
+app.use('/api/admin', adminAuthRoutes);
+app.use('/api/assignments', assignmentRoutes);
 
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.error("MongoDB Connection Error:", err));
 
-// Route to Fetch All Messages
+
 app.get("/api/messages", async (req, res) => {
     try {
         const messages = await Message.find().sort({ createdAt: 1 });
@@ -31,32 +58,10 @@ app.get("/api/messages", async (req, res) => {
     }
 });
 
-// Handle WebSocket Messaging
-io.on("connection", (socket) => {
-    console.log("User connected:", socket.id);
 
-    // Handle Public Messages
-    socket.on("sendMessage", async (msg) => {
-        try {
-            const newMessage = new Message({ username: msg.username, text: msg.text });
-            await newMessage.save();
-            io.emit("receiveMessage", newMessage); // Broadcast to all users
-        } catch (error) {
-            console.error("Error saving message:", error);
-        }
-    });
+// Serve uploaded files statically
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-    // Handle Private Messages
-    socket.on("privateMessage", ({ sender, recipient, text }) => {
-        io.to(recipient).emit("receivePrivateMessage", { sender, text });
-    });
 
-    // Handle Disconnection
-    socket.on("disconnect", () => {
-        console.log("User disconnected:", socket.id);
-    });
-});
-
-// Start the Server
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

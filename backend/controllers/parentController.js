@@ -11,14 +11,26 @@ const getAllParents = async (req, res) => {
 
 const addParent = async (req, res) => {
   try {
-    const { name, email, childName } = req.body;
-    const newParent = new Parent({ name, email, childName });
+    console.log("📥 Received data from frontend:", req.body); 
+
+    const { name, email, mobile, childName, childGrade } = req.body;
+
+    // Validate input fields
+    if (!name || !email || !mobile || !childName || !childGrade) {
+      console.error("🚨 Missing fields:", { name, email, mobile, childName, childGrade });
+      return res.status(400).json({ message: "All fields are required!" });
+    }
+
+    const newParent = new Parent({ name, email, mobile, childName, childGrade });
     await newParent.save();
+
     res.status(201).json(newParent);
   } catch (error) {
-    res.status(400).json({ message: "Error adding parent", error });
+    console.error("🔥 Error adding parent:", error);
+    res.status(500).json({ message: "Error adding parent", error });
   }
 };
+
 
 const updateParent = async (req, res) => {
   try {

@@ -44,15 +44,22 @@ const Services = () => {
 
         {/* Services Section */}
         <section className="py-16 px-6 bg-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md text-center">
-                <h2 className="text-2xl font-bold text-blue-600">{service.title}</h2>
-                <p className="text-lg text-gray-700 mt-4">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {services.map((service, index) => (
+      <div
+        key={index}
+        className="relative group bg-gray-100 p-6 rounded-lg shadow-md text-center overflow-hidden hover:scale-105 transition-transform duration-300"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="relative z-10">
+          <h2 className="text-2xl font-bold text-blue-600">{service.title}</h2>
+          <p className="text-lg text-gray-700 mt-4">{service.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
 
         {/* Parent Engagement Section */}
         <section className="py-16 px-6 bg-gray-100">

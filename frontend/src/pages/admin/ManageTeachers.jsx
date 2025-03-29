@@ -1,107 +1,3 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-
-// export default function ManageTeachers() {
-//   const [teachers, setTeachers] = useState([]);
-//   const [newTeacher, setNewTeacher] = useState({ name: "", email: "" });
-//   const [editTeacher, setEditTeacher] = useState(null);
-
-//   // Fetch teachers from backend
-//   useEffect(() => {
-//     axios.get("http://localhost:5000/api/teachers")
-//       .then(response => setTeachers(response.data))
-//       .catch(error => console.error("Error fetching teachers:", error));
-//   }, []);
-
-//   // Handle adding a new teacher
-//   const addTeacher = () => {
-//     axios.post("http://localhost:5000/api/teachers", newTeacher)
-//       .then(response => {
-//         setTeachers([...teachers, response.data]);
-//         setNewTeacher({ name: "", email: "" });
-//       })
-//       .catch(error => console.error("Error adding teacher:", error));
-//   };
-
-//   // Handle deleting a teacher
-//   const deleteTeacher = (id) => {
-//     axios.delete(`http://localhost:5000/api/teachers/${id}`)
-//       .then(() => setTeachers(teachers.filter(t => t._id !== id)))
-//       .catch(error => console.error("Error deleting teacher:", error));
-//   };
-
-//   // Handle updating a teacher
-//   const updateTeacher = () => {
-//     axios.put(`http://localhost:5000/api/teachers/${editTeacher._id}`, editTeacher)
-//       .then(response => {
-//         setTeachers(teachers.map(t => (t._id === editTeacher._id ? response.data : t)));
-//         setEditTeacher(null);
-//       })
-//       .catch(error => console.error("Error updating teacher:", error));
-//   };
-
-//   return (
-//     <div className="p-6 max-w-6xl mx-auto">
-//       <h1 className="text-3xl font-bold mb-6">Manage Teachers</h1>
-
-//       {/* Add New Teacher Form */}
-//       <div className="mb-6 p-4 border rounded">
-//         <h2 className="text-xl font-semibold">Add New Teacher</h2>
-//         <input
-//           type="text"
-//           placeholder="Name"
-//           value={newTeacher.name}
-//           onChange={(e) => setNewTeacher({ ...newTeacher, name: e.target.value })}
-//           className="border p-2 m-2"
-//         />
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           value={newTeacher.email}
-//           onChange={(e) => setNewTeacher({ ...newTeacher, email: e.target.value })}
-//           className="border p-2 m-2"
-//         />
-//         <button onClick={addTeacher} className="bg-green-500 text-white px-4 py-2 rounded">Add</button>
-//       </div>
-
-//       {/* List Teachers */}
-//       <div className="p-4 border rounded">
-//         <h2 className="text-xl font-semibold">Teachers List</h2>
-//         <ul>
-//           {teachers.map(teacher => (
-//             <li key={teacher._id} className="flex justify-between items-center border-b p-2">
-//               {editTeacher && editTeacher._id === teacher._id ? (
-//                 <>
-//                   <input
-//                     type="text"
-//                     value={editTeacher.name}
-//                     onChange={(e) => setEditTeacher({ ...editTeacher, name: e.target.value })}
-//                     className="border p-2"
-//                   />
-//                   <input
-//                     type="email"
-//                     value={editTeacher.email}
-//                     onChange={(e) => setEditTeacher({ ...editTeacher, email: e.target.value })}
-//                     className="border p-2"
-//                   />
-//                   <button onClick={updateTeacher} className="bg-yellow-500 text-white px-4 py-2 rounded">Save</button>
-//                 </>
-//               ) : (
-//                 <>
-//                   <span>{teacher.name} ({teacher.email})</span>
-//                   <div>
-//                     <button onClick={() => setEditTeacher(teacher)} className="bg-blue-500 text-white px-2 py-1 rounded mx-1">Edit</button>
-//                     <button onClick={() => deleteTeacher(teacher._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-//                   </div>
-//                 </>
-//               )}
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// }
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -110,16 +6,24 @@ export default function ManageTeachers() {
   const [newTeacher, setNewTeacher] = useState({ name: "", email: "", mobile: "" });
   const [editTeacher, setEditTeacher] = useState(null);
 
+  // Get auth token from localStorage
+  const token = localStorage.getItem("token");
+
+  // Axios configuration with Authorization header
+  const axiosConfig = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
   // Fetch teachers from backend
   useEffect(() => {
-    axios.get("http://localhost:5000/api/teachers")
+    axios.get("http://localhost:5000/api/teachers", axiosConfig)
       .then(response => setTeachers(response.data))
       .catch(error => console.error("Error fetching teachers:", error));
   }, []);
 
   // Handle adding a new teacher
   const addTeacher = () => {
-    axios.post("http://localhost:5000/api/teachers", newTeacher)
+    axios.post("http://localhost:5000/api/teachers", newTeacher, axiosConfig)
       .then(response => {
         setTeachers([...teachers, response.data]);
         setNewTeacher({ name: "", email: "", mobile: "" });
@@ -129,14 +33,14 @@ export default function ManageTeachers() {
 
   // Handle deleting a teacher
   const deleteTeacher = (id) => {
-    axios.delete(`http://localhost:5000/api/teachers/${id}`)
+    axios.delete(`http://localhost:5000/api/teachers/${id}`, axiosConfig)
       .then(() => setTeachers(teachers.filter(t => t._id !== id)))
       .catch(error => console.error("Error deleting teacher:", error));
   };
 
   // Handle updating a teacher
   const updateTeacher = () => {
-    axios.put(`http://localhost:5000/api/teachers/${editTeacher._id}`, editTeacher)
+    axios.put(`http://localhost:5000/api/teachers/${editTeacher._id}`, editTeacher, axiosConfig)
       .then(response => {
         setTeachers(teachers.map(t => (t._id === editTeacher._id ? response.data : t)));
         setEditTeacher(null);
@@ -146,11 +50,11 @@ export default function ManageTeachers() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Manage Teachers</h1>
+      <h1 className="text-3xl font-bold mb-6 text-blue-500">Manage Teachers</h1>
 
       {/* Add New Teacher Form */}
       <div className="mb-6 p-4 border rounded">
-        <h2 className="text-xl font-semibold">Add New Teacher</h2>
+        <h2 className="text-xl font-semibold text-blue-500">Add New Teacher</h2>
         <input
           type="text"
           placeholder="Name"
@@ -177,7 +81,7 @@ export default function ManageTeachers() {
 
       {/* List Teachers */}
       <div className="p-4 border rounded">
-        <h2 className="text-xl font-semibold">Teachers List</h2>
+        <h2 className="text-xl font-semibold text-blue-500">Teachers List</h2>
         <ul>
           {teachers.map(teacher => (
             <li key={teacher._id} className="flex justify-between items-center border-b p-2">

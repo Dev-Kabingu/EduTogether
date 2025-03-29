@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from '../components/Header'
 import img1 from '../assets/img1.JPG'
+import img6 from '../assets/img6.png'
 import Card from '../components/Card'
 
 const Home = () => {
@@ -40,7 +41,7 @@ const Home = () => {
           </Link>
         </div>
         <div className="md:w-1/2">
-          <img src={img1} alt="Communication" className="w-full rounded-lg shadow-lg" />
+          <img src={img6} alt="Communication" className="w-full h-140 rounded-lg" />
         </div>
       </section>
 

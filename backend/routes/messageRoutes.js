@@ -1,18 +1,21 @@
 const express = require("express");
-const authMiddleware = require("../middleware/authMiddleware");
+const { createMeeting, getMeetings, getMeetingById, updateMeeting, deleteMeeting } = require("../controllers/meetingController");
+
 const router = express.Router();
 
-let messages = [];
+// Create a new meeting
+router.post("/create", createMeeting);
 
-router.get("/messages", authMiddleware, (req, res) => {
-    res.json(messages);
-});
+// Get all meetings
+router.get("/", getMeetings);
 
-router.post("/messages", authMiddleware, (req, res) => {
-    const { text } = req.body;
-    const message = { user: req.user.name, text };
-    messages.push(message);
-    res.json({ message: "Message sent", messages });
-});
+// Get a single meeting by ID
+router.get("/:id", getMeetingById);
+
+// Update a meeting
+router.put("/:id", updateMeeting);
+
+// Delete a meeting
+router.delete("/:id", deleteMeeting);
 
 module.exports = router;

@@ -1,35 +1,35 @@
 const express = require("express");
-const router = express.Router();
+const mongoose = require("mongoose");
 const Announcement = require("../models/Announcement");
-const authMiddleware = require("../middleware/auth");
 
-// ➤ Create an announcement (Teachers only)
-router.post("/create", authMiddleware, async (req, res) => {
-  try {
-    if (req.user.role !== "teacher") return res.status(403).json({ message: "Access denied" });
+const router = express.Router();
 
-    const newAnnouncement = new Announcement({
-      title: req.body.title,
-      description: req.body.description,
-      teacherId: req.user.id,
-      classLevel: req.body.classLevel
-    });
+// POST: Create Announcement
+router.post("/create", async (req, res) => {
+    try {
+        console.log("🔹 Received Request Body:", req.body); // ✅ Debug incoming data
 
-    await newAnnouncement.save();
-    res.status(201).json({ message: "Announcement posted successfully", announcement: newAnnouncement });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+        const { title, message, target } = req.body;
 
-// ➤ Get announcements for a specific class (Parents)
-router.get("/:classLevel", authMiddleware, async (req, res) => {
-  try {
-    const announcements = await Announcement.find({ classLevel: req.params.classLevel }).sort({ createdAt: -1 });
-    res.status(200).json(announcements);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+        // 🔹 Check if required fields are missing
+        if (!title || !message || !target) {
+            console.log("❌ Missing Fields:", { title, message, target });
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // 🔹 Create and save announcement
+        const newAnnouncement = new Announcement({ title, message, target });
+
+        console.log("🔹 Saving Announcement:", newAnnouncement); // ✅ Debug before saving
+        await newAnnouncement.save();
+
+        console.log("✅ Announcement Saved:", newAnnouncement);
+        return res.status(201).json({ message: "Announcement created successfully", announcement: newAnnouncement });
+
+    } catch (error) {
+        console.error("🚨 Server Error:", error);
+        return res.status(500).json({ message: "Server error", error: error.message });
+    }
 });
 
 module.exports = router;

@@ -1,69 +1,77 @@
-// import CreateAnnouncement from "../components/CreateAnnouncement";
-
-// const TeacherDashboard = () => {
-//   console.log("TeacherDashboard is rendering...");
-
-//   return (
-//     <div className="p-6">
-//       <h1 className="text-2xl font-bold mb-4">Teacher Dashboard</h1>
-//       <p className="text-gray-500">If you see this, the page is rendering correctly.</p>
-//       <CreateAnnouncement />
-//     </div>
-//   );
-// };
-
-// export default TeacherDashboard;
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function TeacherDashboard() {
-  const [notifications, setNotifications] = useState([
-    "New message from a parent",
-    "CBC update available",
-  ]);
+const TeacherDashboard = () => {
+    const [announcements, setAnnouncements] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Teacher Dashboard</h1>
+    useEffect(() => {
+    
+    }, []);
 
-      <div className="grid grid-cols-2 gap-6">
-        <div className="border p-4 rounded-lg shadow">
-          <h2 className="text-xl font-semibold">Manage Student Progress</h2>
-          <Link to="/teacher/students">
-            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-              Go to Students
-            </button>
-          </Link>
-        </div>
+    return (
+        <div className="p-6 max-w-4xl mx-auto mt-12">
+            <h1 className="text-3xl font-bold mb-6">Teacher Dashboard</h1>
 
-        <div className="border p-4 rounded-lg shadow">
+            <div className="grid grid-cols-2 gap-6">
+            <div className="border p-4 rounded-lg shadow bg-blue-50">
           <h2 className="text-xl font-semibold">Messages</h2>
+          <p className="text-gray-500">Open Chat with parents.</p>
           <Link to="/ChatApp">
              <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded">
               View Messages
             </button>
            </Link>
-
         </div>
-
-        <div className="border p-4 rounded-lg shadow">
-          <h2 className="text-xl font-semibold">Class Management</h2>
-          <Link to="/teacher/classes">
-            <button className="mt-4 px-4 py-2 bg-purple-500 text-white rounded">
-              Manage Classes
+           
+        <div className="border p-4 rounded-lg shadow bg-blue-50">
+          <h2 className="text-xl font-semibold">Assignments</h2>
+          <p className="text-gray-500">Upload Assignments and other resources.</p>
+          <Link to="/TeacherUpload">
+            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+              Uplaod Assignments
             </button>
           </Link>
         </div>
 
-        <div className="border p-4 rounded-lg shadow">
-          <h2 className="text-xl font-semibold">Notifications</h2>
-          <ul className="mt-2 text-sm text-gray-600">
-            {notifications.map((note, index) => (
-              <li key={index} className="mt-1">- {note}</li>
-            ))}
-          </ul>
+        <div className="border p-4 rounded-lg shadow bg-blue-50">
+          <h2 className="text-xl font-semibold">Assignments</h2>
+          <p className="text-gray-500">View all the uploaded assignments and other resources.</p>
+          <Link to="/AssignmentPage">
+            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded bg-purple-400">
+              view Uploaded Assignments
+            </button>
+          </Link>
         </div>
-      </div>
-    </div>
-  );
-}
+
+                <div className="border p-4 rounded-lg shadow bg-blue-50">
+                    <h2 className="text-xl font-semibold">View Scheduled Meetings / Event</h2>
+                    <p className="text-gray-500">Upcoming Meetings or Events</p>
+                    <Link to="/ScheduledMeetings">
+                        <button className="mt-4 px-4 py-2  bg-yellow-500 0 text-white rounded">
+                            View Meetings
+                        </button>
+                    </Link>
+                </div>
+
+                <div className="border p-4 rounded-lg shadow bg-blue-50">
+                    <h2 className="text-xl font-semibold">View Announcements</h2>
+                    {announcements.length === 0 ? (
+                        <p className="text-gray-500">No announcements yet.</p>
+                    ) : (
+                        <ul className="mt-2 text-sm text-gray-600">
+                            {announcements.map((announcement) => (
+                                <li key={announcement._id} className="border-b py-2">
+                                    <strong>{announcement.title}</strong> - {announcement.classLevel}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default TeacherDashboard;
