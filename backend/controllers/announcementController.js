@@ -1,7 +1,6 @@
 const Notification = require("../models/Notification");
 const { sendEmailNotification, sendSMSNotification } = require("../utils/notificationUtils");
 
-// Send a notification
 exports.sendNotification = async (req, res) => {
   try {
     const { recipientType, recipientId, message, type } = req.body;
@@ -9,7 +8,7 @@ exports.sendNotification = async (req, res) => {
     const newNotification = new Notification({ recipientType, recipientId, message, type });
     await newNotification.save();
 
-    // Send real-time notification via WebSockets
+    
     const io = req.app.get("socketio");
     io.emit("receiveNotification", { recipientType, message, type });
 
@@ -23,7 +22,7 @@ exports.sendNotification = async (req, res) => {
   }
 };
 
-// Get all notifications
+
 exports.getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find().sort({ createdAt: -1 });

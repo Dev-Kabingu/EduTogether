@@ -7,7 +7,7 @@ const AssignmentSchema = new mongoose.Schema({
   grade: { type: String, required: true },
   deadline: { type: Date, required: true },
   description: { type: String },
-  filePath: { type: String, required: true } // Path to the uploaded file
+  filePath: { type: String, required: true } 
 });
 
 module.exports = mongoose.model('Assignment', AssignmentSchema);

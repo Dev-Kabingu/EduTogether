@@ -34,7 +34,6 @@ const Services = () => {
     <>
       <Header />
       <div className="w-full">
-        {/* Hero Section */}
         <section className="py-24 bg-blue-100 text-center">
           <h1 className="text-4xl font-bold text-blue-700">Our Services</h1>
           <p className="text-lg text-gray-700 mt-4">
@@ -62,49 +61,123 @@ const Services = () => {
 
 
         {/* Parent Engagement Section */}
-        <section className="py-16 px-6 bg-gray-100">
-          <h2 className="text-3xl font-bold text-center text-blue-700">
-            Empowering Parental Engagement
-          </h2>
-          <p className="text-lg text-gray-700 text-center mt-4">
-            EduTogether provides tools that encourage parents to actively participate in their child’s education and strengthen the parent-teacher partnership.
-          </p>
-          <ul className="mt-6 list-disc list-inside text-gray-700 px-8">
-            <li>Receive personalized updates tailored to your child's needs.</li>
-            <li>Participate in virtual parent-teacher conferences.</li>
-            <li>Access learning resources to support your child at home.</li>
-          </ul>
-        </section>
+        <section className="py-20 px-8 md:px-16 bg-blue-50">
+  {/* Section Title */}
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-4xl font-bold text-blue-700">
+      Empowering Parental Engagement
+    </h2>
+    <p className="text-lg text-gray-700 mt-4 leading-relaxed">
+      EduTogether provides tools that encourage parents to actively participate in their child’s education and strengthen the parent-teacher partnership.
+    </p>
+  </div>
 
-        {/* Teacher Tools Section */}
-        <section className="py-16 px-6 bg-white">
-          <h2 className="text-3xl font-bold text-center text-blue-700">
-            Supporting Teachers with Advanced Tools
-          </h2>
-          <p className="text-lg text-gray-700 text-center mt-4">
-            Our platform equips teachers with features that simplify communication and enhance their connection with parents.
-          </p>
-          <ul className="mt-6 list-disc list-inside text-gray-700 px-8">
-            <li>Easily share updates, grades, and attendance records.</li>
-            <li>Host virtual meetings with parents for instant discussions.</li>
-            <li>Streamline communication using our user-friendly dashboard.</li>
-          </ul>
-        </section>
+  <div className="max-w-2xl mx-auto mt-8">
+    <ul className="space-y-4 text-gray-700 text-lg">
+      <li className="flex items-start gap-3">
+        <span className="text-blue-600 text-xl"></span> 
+        Receive personalized updates tailored to your child's needs.
+      </li>
+      <li className="flex items-start gap-3">
+        <span className="text-blue-600 text-xl"></span> 
+        Participate in virtual parent-teacher conferences.
+      </li>
+      <li className="flex items-start gap-3">
+        <span className="text-blue-600 text-xl"></span> 
+        Access learning resources to support your child at home.
+      </li>
+    </ul>
+  </div>
+</section>
 
-        {/* Collaborative Goals Section */}
-        <section className="py-16 px-6 bg-blue-100">
-          <h2 className="text-3xl font-bold text-center text-blue-700">
-            Achieving Shared Goals Together
-          </h2>
-          <p className="text-lg text-gray-700 text-center mt-4">
-            EduTogether bridges the communication gap by fostering a collaborative environment where parents and teachers work hand-in-hand for better student outcomes.
-          </p>
-          <ul className="mt-6 list-disc list-inside text-gray-700 px-8">
-            <li>Track and celebrate milestones in your child’s education journey.</li>
-            <li>Ensure transparency with easy access to reports and updates.</li>
-            <li>Collaborate on strategies for academic and personal growth.</li>
-          </ul>
-        </section>
+
+       {/* Teacher Tools Section */}
+       <section className="py-20 px-8 md:px-16 bg-blue-50">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-bold text-blue-700">
+        Strengthening Parent-Teacher Collaboration
+      </h2>
+      <p className="text-lg text-gray-700 mt-4 leading-relaxed max-w-3xl mx-auto mb-24">
+        EduTogether provides tools that encourage parents to actively engage in their child's education 
+        while equipping teachers with features that streamline communication.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="bg-white shadow-md rounded-lg p-8">
+        <h3 className="text-2xl font-bold text-blue-600 mb-4">
+          Supporting Teachers with Advanced Tools
+        </h3>
+        <ul className="space-y-4 text-gray-700 text-lg">
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 text-xl"></span> 
+            Easily share updates, grades, and attendance records.
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 text-xl"></span> 
+            Host virtual meetings with parents for instant discussions.
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 text-xl"></span> 
+            Streamline communication using our user-friendly dashboard.
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-white shadow-md rounded-lg p-8">
+        <h3 className="text-2xl font-bold text-blue-600 mb-4">
+          Empowering Parental Engagement
+        </h3>
+        <ul className="space-y-4 text-gray-700 text-lg">
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 text-xl"></span> 
+            Receive personalized updates tailored to your child's needs.
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 text-xl"></span> 
+            Participate in virtual parent-teacher conferences.
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 text-xl"></span> 
+            Access learning resources to support your child at home.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section className="py-20 px-8 md:px-16 bg-gray-50">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-4xl font-bold text-blue-700">
+      Achieving Shared Goals Together
+    </h2>
+    <p className="text-lg text-gray-700 mt-4 leading-relaxed">
+      EduTogether bridges the communication gap by fostering a collaborative 
+      environment where parents and teachers work hand-in-hand for better student outcomes.
+    </p>
+  </div>
+
+  {/* Feature List */}
+  <div className="max-w-2xl mx-auto mt-8">
+    <ul className="space-y-4 text-gray-700 text-lg">
+      <li className="flex items-start gap-3">
+        <span className="text-blue-600 text-xl"></span>  
+        Track and celebrate milestones in your child’s education journey.
+      </li>
+      <li className="flex items-start gap-3">
+        <span className="text-blue-600 text-xl"></span>  
+        Ensure transparency with easy access to reports and updates.
+      </li>
+      <li className="flex items-start gap-3">
+        <span className="text-blue-600 text-xl"></span>  
+        Collaborate on strategies for academic and personal growth.
+      </li>
+    </ul>
+  </div>
+</section>
+
 
         {/* Call to Action */}
         <section className="py-16 bg-blue-600 text-white text-center">

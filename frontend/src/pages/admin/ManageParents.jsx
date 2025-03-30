@@ -12,14 +12,14 @@ export default function ManageParents() {
   });
   const [editParent, setEditParent] = useState(null);
 
-  // Fetch parents from backend
+ 
   useEffect(() => {
     axios.get("http://localhost:5000/api/parents")
       .then(response => setParents(response.data))
       .catch(error => console.error("Error fetching parents:", error));
   }, []);
 
-  // Handle adding a new parent
+
   const addParent = () => {
     axios.post("http://localhost:5000/api/parents", newParent)
       .then(response => {
@@ -29,14 +29,14 @@ export default function ManageParents() {
       .catch(error => console.error("Error adding parent:", error));
   };
 
-  // Handle deleting a parent
+ 
   const deleteParent = (id) => {
     axios.delete(`http://localhost:5000/api/parents/${id}`)
       .then(() => setParents(parents.filter(p => p._id !== id)))
       .catch(error => console.error("Error deleting parent:", error));
   };
 
-  // Handle updating a parent
+  
   const updateParent = () => {
     axios.put(`http://localhost:5000/api/parents/${editParent._id}`, editParent)
       .then(response => {
@@ -50,7 +50,7 @@ export default function ManageParents() {
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-blue-500">Manage Parents</h1>
 
-      {/* Add New Parent Form */}
+  
       <div className="mb-6 p-4 border rounded">
         <h2 className="text-xl font-semibold text-blue-500">Add New Parent</h2>
         <input

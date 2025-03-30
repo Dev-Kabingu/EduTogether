@@ -6,14 +6,14 @@ export default function ManageStudents() {
   const [newStudent, setNewStudent] = useState({ name: "", grade: "" });
   const [editStudent, setEditStudent] = useState(null);
 
-  // Fetch students from backend
+ 
   useEffect(() => {
     axios.get("http://localhost:5000/api/students")
       .then(response => setStudents(response.data))
       .catch(error => console.error("Error fetching students:", error));
   }, []);
 
-  // Handle adding a new student
+ 
   const addStudent = () => {
     axios.post("http://localhost:5000/api/students", newStudent)
       .then(response => {
@@ -23,14 +23,14 @@ export default function ManageStudents() {
       .catch(error => console.error("Error adding student:", error));
   };
 
-  // Handle deleting a student
+ 
   const deleteStudent = (id) => {
     axios.delete(`http://localhost:5000/api/students/${id}`)
       .then(() => setStudents(students.filter(s => s._id !== id)))
       .catch(error => console.error("Error deleting student:", error));
   };
 
-  // Handle updating a student
+  
   const updateStudent = () => {
     axios.put(`http://localhost:5000/api/students/${editStudent._id}`, editStudent)
       .then(response => {

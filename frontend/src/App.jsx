@@ -27,6 +27,10 @@ import AdminRegister from './pages/admin/AdminRegister'
 import AssignmentPage from './pages/AssignmentPage'
 import TeacherUpload from './components/TeacherUpload'
 import AssignmentList from './components/AssignmentList'
+import SupportPage from './pages/SupportPage'
+import  StepByStepSupportGuidePage from './pages/StepByStepSupportGuidePage'
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 
 
@@ -61,6 +65,12 @@ function App() {
      <Route path="/ScheduledMeetings" element={<ScheduledMeetings />} /> 
      <Route path="/AdminLogin" element={<AdminLogin/>} />
      <Route path="/AdminRegister" element={<AdminRegister/>} />
+     <Route path="/SupportPage" element={<SupportPage/>} />
+     <Route path="/StepByStepSupportGuidePage" element={<StepByStepSupportGuidePage/>} />
+     <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+     <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+
+    
      </Routes>
      </BrowserRouter>
     </>

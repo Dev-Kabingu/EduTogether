@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../middleware/upload");
-const Assignment = require("../models/Assignment"); // Make sure this path is correct
+const Assignment = require("../models/Assignment"); 
 
-// Upload assignment file
+
 router.post("/upload", upload.single("file"), async (req, res) => {
     try {
       console.log("Received File:", req.file);
@@ -13,7 +13,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         return res.status(400).json({ message: "No file uploaded" });
       }
   
-      // Create a new assignment entry
+     
       const newAssignment = new Assignment({
         title: req.body.title,
         fileType: req.file.mimetype,
@@ -21,7 +21,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         uploadDate: new Date(),
         deadline: req.body.deadline,
         description: req.body.description,
-        filePath: `/uploads/${req.file.filename}`, // Ensure this is saved correctly
+        filePath: `/uploads/${req.file.filename}`, 
       });
       
   
@@ -39,7 +39,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
   });
   
 
-// Fetch all assignments (ADD THIS)
+
 router.get("/", async (req, res) => {
   try {
     const assignments = await Assignment.find();

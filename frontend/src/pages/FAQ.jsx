@@ -117,19 +117,97 @@ const FAQs = () => {
         </section>
 
         {/* Tips Section */}
-        <section className="py-16 px-6 bg-gray-100">
-          <h2 className="text-3xl font-bold text-center text-blue-700">
-            Helpful Tips for Parents & Teachers
-          </h2>
-          <p className="text-lg text-gray-700 text-center mt-4">
-            Make the most out of EduTogether with these quick tips.
+        <section className="py-20 px-8 md:px-16 bg-blue-50">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-bold text-blue-700">
+        Helpful Tips for Parents & Teachers
+      </h2>
+      <p className="text-lg text-gray-700 mt-4 leading-relaxed max-w-3xl mx-auto">
+        Maximize your experience on EduTogether with these essential tips to enhance communication, engagement, and student success.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+   
+      <div className="bg-white shadow-md rounded-lg p-6 flex items-start gap-4">
+        <span className="text-blue-600 text-3xl"></span>
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">
+            Keep Your Profile Updated
+          </h3>
+          <p className="text-gray-700 mt-2">
+            Ensure your profile information is always accurate to receive relevant updates and alerts.
           </p>
-          <ul className="mt-6 list-disc list-inside text-gray-700 px-8">
-            <li>Ensure your profile is always up-to-date for personalized updates.</li>
-            <li>Check your notifications daily for important announcements.</li>
-            <li>Engage regularly in real-time chats for quick clarifications.</li>
-          </ul>
-        </section>
+        </div>
+      </div>
+
+   
+      <div className="bg-white shadow-md rounded-lg p-6 flex items-start gap-4">
+        <span className="text-blue-600 text-3xl"></span>
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">
+            Stay on Top of Notifications
+          </h3>
+          <p className="text-gray-700 mt-2">
+            Check your notifications daily for important school announcements, assignments, and messages.
+          </p>
+        </div>
+      </div>
+
+ 
+      <div className="bg-white shadow-md rounded-lg p-6 flex items-start gap-4">
+        <span className="text-blue-600 text-3xl"></span>
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">
+            Engage in Real-Time Chats
+          </h3>
+          <p className="text-gray-700 mt-2">
+            Use the instant messaging feature to clarify doubts and strengthen collaboration between parents and teachers.
+          </p>
+        </div>
+      </div>
+
+ 
+      <div className="bg-white shadow-md rounded-lg p-6 flex items-start gap-4">
+        <span className="text-blue-600 text-3xl"></span>
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">
+            Attend Virtual Meetings
+          </h3>
+          <p className="text-gray-700 mt-2">
+            Make time for scheduled virtual parent-teacher meetings to discuss student progress and address concerns.
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-white shadow-md rounded-lg p-6 flex items-start gap-4">
+        <span className="text-blue-600 text-3xl"></span>
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">
+            Access Learning Resources
+          </h3>
+          <p className="text-gray-700 mt-2">
+            Utilize shared study materials, assignments, and resources to support your child’s learning at home.
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-white shadow-md rounded-lg p-6 flex items-start gap-4">
+        <span className="text-blue-600 text-3xl"></span>
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">
+            Foster a Positive Community
+          </h3>
+          <p className="text-gray-700 mt-2">
+            Encourage respectful discussions and active involvement to create a supportive learning environment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
         {/* Contact Section */}
         <section className="py-16 px-6 bg-white">

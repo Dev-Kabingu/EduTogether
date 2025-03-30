@@ -8,19 +8,18 @@ const Message = require("./models/Message");
 const path = require("path");
 
 
-//Import WebSocket setup properly
 const { initializeSocket } = require("./socket");
 
 const app = express();
 const server = http.createServer(app);
 
-// Initialize socket.io
+
 initializeSocket(server); 
 
 app.use(cors());
 app.use(express.json());
 
-// ✅ Serve uploads folder as static files
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const authRoutes = require("./routes/authRoutes");
@@ -57,11 +56,6 @@ app.get("/api/messages", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch messages" });
     }
 });
-
-
-// Serve uploaded files statically
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

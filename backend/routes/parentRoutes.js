@@ -2,7 +2,7 @@ const express = require("express");
 const Parent = require("../models/Parent");
 const router = express.Router();
 
-// Get all parents
+
 router.get("/", async (req, res) => {
   try {
     const parents = await Parent.find();
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Add a new parent
+
 router.post("/", async (req, res) => {
   try {
     const { name, email, mobile, childName, childGrade } = req.body; // ✅ Accept all fields
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update a parent
+
 router.put("/:id", async (req, res) => {
   try {
     const updatedParent = await Parent.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -34,7 +34,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete a parent
+
 router.delete("/:id", async (req, res) => {
   try {
     await Parent.findByIdAndDelete(req.params.id);

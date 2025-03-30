@@ -2,7 +2,7 @@ const express = require("express");
 const Student = require("../models/Student");
 const router = express.Router();
 
-// Get all students
+
 router.get("/", async (req, res) => {
   try {
     const students = await Student.find().populate("parentId", "name email");
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Add a new student
+
 router.post("/", async (req, res) => {
   try {
     const { name, email, grade, parentId } = req.body;
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update a student
+
 router.put("/:id", async (req, res) => {
   try {
     const updatedStudent = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -34,7 +34,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete a student
+
 router.delete("/:id", async (req, res) => {
   try {
     await Student.findByIdAndDelete(req.params.id);

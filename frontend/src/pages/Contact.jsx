@@ -24,7 +24,7 @@ const Contact = () => {
     <>
       <Header />
       <div className="w-full">
-        {/* Hero Section */}
+        
         <section className="py-24 bg-blue-100 text-center">
           <h1 className="text-4xl font-bold text-blue-700">Contact Us</h1>
           <p className="text-lg text-gray-700 mt-4">
@@ -32,10 +32,9 @@ const Contact = () => {
           </p>
         </section>
 
-        {/* Contact Info and Form Section */}
         <section className="py-16 px-6 bg-white">
           <div className="max-w-4xl mx-auto flex flex-col lg:flex-row gap-12">
-            {/* Contact Info */}
+         
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl font-bold text-blue-700">Our Contact Details</h2>
               <p className="text-lg text-gray-700">
@@ -111,35 +110,48 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Feedback Section */}
         <section className="py-16 px-6 bg-gray-100">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-blue-700">We Value Your Feedback</h2>
-            <p className="text-lg text-gray-700 mt-4">
-              Your feedback helps us improve and provide a better experience. Don’t hesitate to share your thoughts and suggestions.
-            </p>
-          </div>
-        </section>
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-16">
 
-        {/* Support Section */}
-        <section className="py-16 px-6 bg-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-blue-700">Need Technical Support?</h2>
-            <p className="text-lg text-gray-700 mt-4">
-              Having trouble with the platform? Our support team is here to help. Visit our support page for troubleshooting tips or contact us for immediate assistance.
-            </p>
-            <div className="mt-6">
-              <a
-                href="/support"
-                className="bg-blue-600 text-white px-6 py-3 rounded-md text-lg shadow-md hover:bg-blue-700"
-              >
-                Visit Support Page
-              </a>
-            </div>
-          </div>
-        </section>
 
-        {/* Call to Action */}
+    <div className="md:w-1/2">
+      <h2 className="text-3xl font-bold text-blue-700">
+        We Value Your Feedback
+      </h2>
+      <p className="text-lg text-gray-700 mt-4">
+        Your feedback helps us improve and provide a better experience. Don’t hesitate to share your thoughts and suggestions.
+      </p>
+    </div>
+
+
+    <div className="md:w-1/2 py-12 md:py-0 bg-blue-50 rounded-xl p-8 text-center md:text-left">
+      <h2 className="text-4xl font-bold text-blue-700 mb-4">
+        Need Technical Support?
+      </h2>
+      <p className="text-lg text-gray-700 mt-4 leading-relaxed">
+        Experiencing difficulties with EduTogether? Our dedicated support team is here to help resolve any issues you may face with the platform. We're committed to providing quick and efficient solutions to keep you connected.
+      </p>
+      <p className="text-lg text-gray-700 mt-4">
+        Whether it’s login problems, technical glitches, or feature inquiries, we're just a click away. Explore resources such as troubleshooting guides, FAQs, and direct support channels.
+      </p>
+      <ul className="mt-6 list-disc list-inside text-gray-700 px-8">
+        <li>Access detailed troubleshooting guides for common issues.</li>
+        <li>Contact our support team via live chat, email, or phone.</li>
+        <li>Watch video tutorials to navigate EduTogether effectively.</li>
+      </ul>
+      <div className="mt-8">
+        <a
+          href="/SupportPage"
+          className="inline-block bg-blue-600 text-white px-8 py-4 rounded-md text-xl shadow-lg transition duration-300 transform hover:bg-blue-700 hover:scale-105"
+        >
+          Visit Support Page
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
         <section className="py-16 bg-blue-600 text-white text-center">
           <h2 className="text-3xl font-bold">Connect with EduTogether Today</h2>
           <p className="text-lg mt-2">
@@ -147,7 +159,7 @@ const Contact = () => {
           </p>
         </section>
 
-        {/* Footer */}
+    
         <footer className="py-6 bg-gray-800 text-white text-center">
           <p>&copy; 2025 EduTogether. All rights reserved.</p>
         </footer>

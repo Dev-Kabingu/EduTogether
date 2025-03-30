@@ -6,22 +6,22 @@ export default function ManageTeachers() {
   const [newTeacher, setNewTeacher] = useState({ name: "", email: "", mobile: "" });
   const [editTeacher, setEditTeacher] = useState(null);
 
-  // Get auth token from localStorage
+ 
   const token = localStorage.getItem("token");
 
-  // Axios configuration with Authorization header
+  
   const axiosConfig = {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  // Fetch teachers from backend
+ 
   useEffect(() => {
     axios.get("http://localhost:5000/api/teachers", axiosConfig)
       .then(response => setTeachers(response.data))
       .catch(error => console.error("Error fetching teachers:", error));
   }, []);
 
-  // Handle adding a new teacher
+ 
   const addTeacher = () => {
     axios.post("http://localhost:5000/api/teachers", newTeacher, axiosConfig)
       .then(response => {
@@ -31,14 +31,12 @@ export default function ManageTeachers() {
       .catch(error => console.error("Error adding teacher:", error));
   };
 
-  // Handle deleting a teacher
   const deleteTeacher = (id) => {
     axios.delete(`http://localhost:5000/api/teachers/${id}`, axiosConfig)
       .then(() => setTeachers(teachers.filter(t => t._id !== id)))
       .catch(error => console.error("Error deleting teacher:", error));
   };
 
-  // Handle updating a teacher
   const updateTeacher = () => {
     axios.put(`http://localhost:5000/api/teachers/${editTeacher._id}`, editTeacher, axiosConfig)
       .then(response => {
