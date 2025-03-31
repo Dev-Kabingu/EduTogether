@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from '../components/Header'
-import email from '../assets/email.JPG'
+import email from '../assets/email.jpg'
 import img6 from '../assets/img6.png'
 import img3 from '../assets/img3.jpg'
 
