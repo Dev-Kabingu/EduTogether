@@ -13,12 +13,30 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for contacting us! We’ll get back to you shortly.");
-    setFormData({ name: "", email: "", message: "" });
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+  
+      if (result.success) {
+        alert("Thank you for contacting us! We’ll get back to you shortly.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
+  
 
   return (
     <>
@@ -42,11 +60,11 @@ const Contact = () => {
               </p>
               <div>
                 <h3 className="text-lg font-semibold text-blue-600">Email</h3>
-                <p className="text-lg text-gray-700">support@edutogether.com</p>
+                <p className="text-lg text-gray-700">nduta6550@gmail.com</p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-blue-600">Phone</h3>
-                <p className="text-lg text-gray-700">+254 700 000 000</p>
+                <p className="text-lg text-gray-700">+254 104 797 572</p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-blue-600">Office Hours</h3>

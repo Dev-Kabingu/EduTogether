@@ -8,6 +8,7 @@ const Message = require("./models/Message");
 const path = require("path");
 
 
+
 const { initializeSocket } = require("./socket");
 
 const app = express();
@@ -21,6 +22,8 @@ app.use(express.json());
 
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static("uploads"));
+
 
 const authRoutes = require("./routes/authRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");
@@ -31,6 +34,7 @@ const meetingRoutes = require("./routes/meetingRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const adminAuthRoutes = require('./routes/adminAuthRoutes');
 const assignmentRoutes = require('./routes/assignmentRoutes');
+const contactRoutes = require("./routes/contactRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/teachers", teacherRoutes);
@@ -41,6 +45,7 @@ app.use("/api/meetings", meetingRoutes);
 app.use("/api/admin", adminRoutes); 
 app.use('/api/admin', adminAuthRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use("/api/contact", contactRoutes);
 
 mongoose
     .connect(process.env.MONGO_URI)

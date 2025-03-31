@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SupportPage = () => {
   return (
@@ -82,16 +83,17 @@ const SupportPage = () => {
               <div>
                 <h4 className="font-semibold text-blue-600">Email Support</h4>
                 <p className="text-gray-700">Send us an email, and we’ll respond within 24 hours.</p>
-                <a href="mailto:support@edutogether.com" className="text-blue-600 hover:underline">
+                {/* <a href="mailto:support@edutogether.com" className="text-blue-600 hover:underline">
                   Email Us
-                </a>
+                </a> */}
+                <p className="text-blue-600 hover:underline"><Link to = '/Contact'>Email Us</Link></p>
               </div>
 
               <div>
                 <h4 className="font-semibold text-blue-600">Phone Support</h4>
                 <p className="text-gray-700">Call us for urgent issues and receive help from our dedicated support team.</p>
                 <a href="tel:+123456789" className="text-blue-600 hover:underline">
-                  Call Us: +1 (234) 567-890
+                  Call Us: +254 104 797 572
                 </a>
               </div>
             </div>

@@ -25,10 +25,10 @@ export const fetchMeetings = async () => {
 export const deleteMeeting = async (meetingId) => {
     try {
         const response = await axios.delete(`http://localhost:5000/api/meetings/${meetingId}`);
-        console.log("✅ Meeting Deleted:", response.data);
+        console.log("Meeting Deleted:", response.data);
         return response.data;
     } catch (error) {
-        console.error("❌ Error deleting meeting:", error);
+        console.error(" Error deleting meeting:", error);
         throw error;
     }
 };
