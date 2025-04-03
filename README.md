@@ -1,5 +1,5 @@
 # EduTogether
-
+forntend link to live site: https://frontend-edutogether.vercel.app/
 <!-- recovery code D97ARBP1HGU9NZV9ZXMXVY94 -->
 
 ## 📌 Project Overview
