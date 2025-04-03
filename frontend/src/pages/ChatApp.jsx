@@ -30,30 +30,40 @@ useEffect(() => {
   }
 }, [navigate]);
 
-    useEffect(() => {
-        const fetchMessages = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/api/messages");
-                if (!response.ok) throw new Error("Server not responding");
-                const data = await response.json();
-                setMessages(data);
-            } catch (err) {
-                console.error("Failed to fetch messages:", err);
-            }
-        };
+useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        navigate("/login");
+        return;
+    }
 
-        fetchMessages();
+    try {
+        const decoded = jwtDecode(token);
+        setUser(decoded);
+        console.log("Decoded User:", decoded);
+    } catch (error) {
+        console.error("Invalid token", error);
+        navigate("/login");
+    }
 
-        socket.on("connect", () => console.log(" Socket.io Connected!"));
-        socket.on("receiveMessage", (msg) => {
-            console.log(" New Message Received:", msg);
-            setMessages((prevMessages) => [...prevMessages, msg]);
-        });
+    socket.emit("fetchMessages");
 
-        return () => {
-            socket.off("receiveMessage");
-        };
-    }, []);
+    socket.on("previousMessages", (msgs) => {
+        console.log("Fetched Previous Messages:", msgs);
+        setMessages(msgs);
+    });
+
+    socket.on("receiveMessage", (msg) => {
+        console.log("New Message Received:", msg);
+        setMessages((prevMessages) => [...prevMessages, msg]);
+    });
+
+    return () => {
+        socket.off("previousMessages");
+        socket.off("receiveMessage");
+    };
+}, [navigate]);
+
 
  
     const sendMessage = (e) => {
@@ -92,7 +102,7 @@ useEffect(() => {
                 )}
             </div>
 
-            {/* Message Input */}
+           
             <form onSubmit={sendMessage} className="flex items-center gap-2 mt-4 w-full">
                 <input
                     type="text"

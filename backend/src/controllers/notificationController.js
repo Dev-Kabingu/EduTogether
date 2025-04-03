@@ -1,5 +1,5 @@
 const Notification = require("../models/Notification");
-const { io, connectedClients } = require("../index");
+
 const sendEmail = require("../utils/sendEmail");
 const User = require("../models/User");
 
