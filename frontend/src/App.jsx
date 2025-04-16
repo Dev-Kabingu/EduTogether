@@ -7,7 +7,7 @@ import About from './pages/About'
 import ChatApp from './pages/ChatApp'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
-import Services from './Pages/Services'
+import Services from './pages/Services'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import TeacherDashboard from "./pages/TeacherDashboard";

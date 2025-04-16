@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
+import img1 from "../assets/img1.JPG";
 import img3 from '../assets/img3.jpg'
 import img8 from '../assets/img8.jpg'
 import { Link } from "react-router-dom";
